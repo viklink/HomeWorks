@@ -18,7 +18,6 @@ public class FractionNumberImpl implements FractionNumber{
 
 	@Override
 	public int getDivident() {
-		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < dividents.size(); i++) {
 		int divident = (int)dividents.get(i);
@@ -28,7 +27,6 @@ public class FractionNumberImpl implements FractionNumber{
 
 	@Override
 	public int getDivisor() {
-		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < divisors.size(); i++) {
 			int divisor = (int)divisors.get(i);
@@ -52,16 +50,15 @@ public class FractionNumberImpl implements FractionNumber{
 			this.divisor = divisor;
 		}
 	}
-	
-	public void printNumber(int divident, int divisor) {
-		this.divident = divident;
-		this.divisor = divisor;
-	System.out.println(Integer.toString(divident) + "/" + Integer.toString(divisor));
+	@Override
+	public String toString() {
+		
+		return divident + "/" + divisor;
 	}
 	
 	@Override
 	public double value() {
-		// TODO Auto-generated method stub
+		
 		double value = divident / divisor;
 		System.out.println(value);
 		return value;

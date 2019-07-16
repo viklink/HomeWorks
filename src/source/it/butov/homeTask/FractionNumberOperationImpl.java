@@ -5,9 +5,9 @@ public class FractionNumberOperationImpl implements FractionNumberOperation{
 	int divident;
     int divisor;
     
-    public FractionNumberOperationImpl (int divident, int divisor) {
-        this.divident = divident;
-        this.divisor = divisor;
+    public FractionNumberOperationImpl () {
+    	this.divident = divident;
+    	this.divisor = divisor;
     }
 
     private int dividentA;
@@ -15,62 +15,48 @@ public class FractionNumberOperationImpl implements FractionNumberOperation{
     private int dividentB;
     private int divisorB;
 
-    FractionNumber a = (FractionNumber) new FractionNumberOperationImpl (dividentA, divisorA);
+    FractionNumber a =  new FractionNumberImpl (dividentA, divisorA);
 
-    FractionNumber b = (FractionNumber) new FractionNumberOperationImpl (dividentB,divisorB);
+    FractionNumber b = new FractionNumberImpl (dividentB,divisorB);
 
 	@Override
 	public FractionNumber add(FractionNumber a, FractionNumber b) {
 		
-		int dividentC = dividentA * divisorB + dividentB * divisorA; // числитель новой дроби
-        int divisorC = divisorA * divisorB; // знаменатель новой дроби
+		int dividentC = a.getDivident() * b.getDivisor() + b.getDivident() + a.getDivisor();
+        int divisorC = a.getDivisor() * b.getDivisor();
 
-        FractionNumber c = (FractionNumber) new FractionNumberOperationImpl(dividentC, divisorC);
-
-        System.out.println((Integer.toString(dividentA) + "/" + Integer.toString(divisorA)) + " + "
-                + (Integer.toString(dividentB) + "/" + Integer.toString(divisorB)) + " = "
-                + (Integer.toString(dividentC) + "/" + Integer.toString(divisorC)));
-
+        FractionNumber c = new FractionNumberImpl(dividentC, divisorC);
+        
         return  c;
 	}
 
 	@Override
 	public FractionNumber div(FractionNumber a, FractionNumber b) {
-		int dividentC = dividentA * divisorB;
-        int divisorC = divisorB * dividentA;
+		int dividentC = a.getDivident() * b.getDivisor();
+        int divisorC = b.getDivisor() * a.getDivident();
 
-        FractionNumber c = (FractionNumber) new FractionNumberOperationImpl(dividentC, divisorC);
-
-        System.out.println((Integer.toString(dividentA) + "/" + Integer.toString(divisorA)) + " / "
-                + (Integer.toString(dividentB) + "/" + Integer.toString(divisorB)) + " = "
-                + (Integer.toString(dividentC) + "/" + Integer.toString(divisorC)));
+        FractionNumber c = new FractionNumberImpl(dividentC, divisorC);
 
         return c;
 	}
 
 	@Override
 	public FractionNumber mul(FractionNumber a, FractionNumber b) {
-		int dividentC = dividentA * dividentB;
-        int divisorC = divisorA * divisorB;
+		int dividentC = a.getDivident() * b.getDivident();
+        int divisorC = a.getDivisor() * b.getDivisor();
 
-        FractionNumber c = (FractionNumber) new FractionNumberOperationImpl(dividentC, divisorC);
+       FractionNumber c = new FractionNumberImpl(dividentC, divisorC);
 
-        System.out.println((Integer.toString(dividentA) + "/" + Integer.toString(divisorA)) + " * "
-                + (Integer.toString(dividentB) + "/" + Integer.toString(divisorB)) + " = "
-                + (Integer.toString(dividentC) + "/" + Integer.toString(divisorC)));
         return c;
 	}
 
 	@Override
 	public FractionNumber sub(FractionNumber a, FractionNumber b) {
-		int dividentC = dividentA * divisorB - dividentB * divisorA;
-        int divisorC = divisorA * divisorB;
+		int dividentC = a.getDivident() * b.getDivisor() - b.getDivident() * a.getDivisor();
+        int divisorC = a.getDivisor() * b.getDivisor();
 
-        FractionNumber c = (FractionNumber) new FractionNumberOperationImpl(dividentC, divisorC);
+        FractionNumber c = new FractionNumberImpl(dividentC, divisorC);
 
-        System.out.println((Integer.toString(dividentA) + "/" + Integer.toString(divisorA)) + " - "
-                + (Integer.toString(dividentB) + "/" + Integer.toString(divisorB)) + " = "
-                + (Integer.toString(dividentC) + "/" + Integer.toString(divisorC)));
         return c;
 	}
 
