@@ -4,12 +4,8 @@ import java.util.ArrayList;
 
 public class FractionNumberImpl implements FractionNumber{
 	
-	int divident;
-	int divisor;
-	
-	ArrayList <Integer> dividents = new ArrayList<>();
-	
-	ArrayList <Integer> divisors = new ArrayList<>();
+	private int divident;
+	private int divisor;
 	
 	public FractionNumberImpl(int divident, int divisor) {
 		this.divident = divident;
@@ -19,18 +15,11 @@ public class FractionNumberImpl implements FractionNumber{
 	@Override
 	public int getDivident() {
 		
-		for (int i = 0; i < dividents.size(); i++) {
-		int divident = (int)dividents.get(i);
-		}
 		return divident;
 	}
 
 	@Override
 	public int getDivisor() {
-		
-		for (int i = 0; i < divisors.size(); i++) {
-			int divisor = (int)divisors.get(i);
-		}
 		
 		return divisor;
 	}
@@ -59,11 +48,7 @@ public class FractionNumberImpl implements FractionNumber{
 	@Override
 	public double value() {
 		
-		double value = divident / divisor;
-		System.out.println(value);
-		return value;
+		return divident / divisor;
 	}
 	
-	
-
 }

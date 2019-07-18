@@ -2,12 +2,8 @@ package source.it.butov.homeTask;
 
 public class FractionNumberOperationImpl implements FractionNumberOperation{
 	
-	int divident;
-    int divisor;
-    
     public FractionNumberOperationImpl () {
-    	this.divident = divident;
-    	this.divisor = divisor;
+
     }
 
     private int dividentA;

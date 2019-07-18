@@ -6,7 +6,7 @@ public class Demo {
 	{
 		FractionNumberOperation fractionNumberOperation = new FractionNumberOperationImpl();
 
-		FractionNumber a = new FractionNumberImpl(1, 2);
+		FractionNumber a = new FractionNumberImpl(3, 5);
 		FractionNumber b = new FractionNumberImpl(2, 4);
 
 		System.out.println(fractionNumberOperation.add(a, b));
