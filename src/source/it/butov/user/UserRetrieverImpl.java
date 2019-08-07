@@ -1,52 +1,44 @@
 package source.it.butov.user;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class UserRetrieverImpl implements UserRetriever {
 
 	private UserConverter userConverter;
-	private String csvString;
 
 	public UserRetrieverImpl(UserConverter userConverter) {
-
+		this.userConverter = userConverter;
 	}
 
 	@Override
 	public User[] retrieve() throws Exception {
+		User[] result = new User[getUsersCount()];
 
-		// User[] users = null;
-
-		Scanner scanner = new Scanner(new File("hometask.txt"));
-
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine().trim();
-			if (line.startsWith("#")) {
-				continue;
+		try (Scanner scanner = new Scanner(new File("hometask.txt"))) {
+			int index = 0;
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (!line.startsWith("#")) {
+					User user = userConverter.convertFromCsv(line);
+					result[index] = user;
+					index++;
+				}
 			}
 		}
-		scanner.close();
-
-		User user = userConverter.convertFromCsv(csvString);
-		
-		User[] params = new User[6];
-		
-		// как поместить эти параметры юзера в массив?
-		
-		int id = user.getId();
-		String firstName = user.getFirstName();
-		String lastName = user.getLastName();
-		String email = user.getEmail();
-		String password = user.getPassword();
-		int birthdayYear = user.getBirthdayYear();
-		
-		return params;
+		return result;
 	}
 
 	@Override
 	public UserConverter getConverter() {
+		return this.userConverter;
+	}
 
-		return userConverter;
+	private int getUsersCount() throws IOException {
+		return (int)Files.lines(Paths.get("hometask.txt")).filter(line -> !line.startsWith("#")).count();
 	}
 
 }

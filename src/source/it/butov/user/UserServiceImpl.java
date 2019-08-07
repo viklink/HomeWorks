@@ -1,64 +1,41 @@
 package source.it.butov.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserServiceImpl implements UserService {
 
-	// private User[] users;
-	ErrorType result;
-	UserRetriever userRetriever;
-	UserValidator userValidator;
+	private UserRetriever userRetriever;  
+	private UserValidator userValidator;
 
 	public UserServiceImpl(UserRetriever userRetriever, UserValidator userValidator) {
-
+		this.userRetriever = userRetriever;
+		this.userValidator = userValidator;
 	}
-
-	// User user = userRetriever.retrieve();
 
 	@Override
 	public User[] getAllUsers() throws Exception {
-
-		User user = new User();
-
-		User[] users = new User[6];
-
-		for (int i = 0; i < users.length; i++) {
-
-			users[i] = new User();
-
-		}
-		return users;
+		return userRetriever.retrieve();
 	}
 
 	@Override
 	public ErrorType validate(User user) {
-
-		// ErrorType result = userValidator.validate(user);
-
-		return result;
+		return userValidator.validate(user);
 	}
 
 	@Override
 	public UserRetriever getUserRetriever() {
-
-		return userRetriever;
+		return this.userRetriever;
 	}
 
 	@Override
 	public void setUserRetriever(UserRetriever userRetriever) {
-
 	}
 
 	@Override
 	public UserValidator getUserValidator() {
-
-		return userValidator;
+		return this.userValidator;
 	}
 
 	@Override
 	public void setUserValidator(UserValidator userValidator) {
-
 	}
 
 }
